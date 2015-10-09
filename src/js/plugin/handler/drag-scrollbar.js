@@ -74,6 +74,8 @@ function bindMouseScrollYHandler(element, i) {
     updateScroll(element, 'top', scrollTop);
   }
 
+  var stopPropagation = Function.prototype.call.bind(window.Event.prototype.stopPropagation);
+
   var mouseMoveHandler = function (e) {
     updateScrollTop(e.pageY - currentPageY);
     updateGeometry(element);
@@ -84,6 +86,9 @@ function bindMouseScrollYHandler(element, i) {
   var mouseUpHandler = function () {
     h.stopScrolling(element, 'y');
     i.event.unbind(i.ownerDocument, 'mousemove', mouseMoveHandler);
+    setTimeout(function () {
+      i.event.unbind(i.ownerDocument.body, 'click');
+    });
   };
 
   i.event.bind(i.scrollbarY, 'mousedown', function (e) {
@@ -93,6 +98,7 @@ function bindMouseScrollYHandler(element, i) {
 
     i.event.bind(i.ownerDocument, 'mousemove', mouseMoveHandler);
     i.event.once(i.ownerDocument, 'mouseup', mouseUpHandler);
+    i.event.once(i.ownerDocument.body, 'click', stopPropagation);
 
     e.stopPropagation();
     e.preventDefault();

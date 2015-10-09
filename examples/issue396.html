@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo by rd2d2</title>
+
+  <script type='text/javascript' src='/js/lib/dummy.js'></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+      <script type='text/javascript' src="http://code.jquery.com/jquery-2.1.4.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.4/css/bootstrap-select.min.css">
+      <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.4/js/bootstrap-select.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/css/perfect-scrollbar.min.css">
+      <!-- <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script> -->
+      <script type='text/javascript' src="/dist/js/perfect-scrollbar.jquery.js"></script>
+  <style type='text/css'>
+    .bootstrap-select.btn-group .dropdown-menu.inner {
+	position: relative;
+}
+  </style>
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+$(function () {
+
+		$('.selectpicker').selectpicker();
+
+		$.fn.selectpicker_remove_title = function() {
+			$(this).next().children().removeAttr('title');
+		};
+		var $sel = $('.selectpicker').selectpicker();
+		$sel.selectpicker_remove_title();
+		$sel.change($.fn.selectpicker_remove_title);
+
+		$('.dropdown-menu.inner').perfectScrollbar({
+			minScrollbarLength: 40
+		});
+		$('body').on('shown.bs.dropdown', function () {
+			$('.dropdown-menu.inner').perfectScrollbar('update');
+		});
+
+});
+}//]]>
+
+</script>
+
+</head>
+<body>
+  <h2>Bootstrap select + perfectScrollbar</h2>
+<select class="selectpicker" data-size="5" multiple>
+      <option>Mustard</option>
+      <option>Ketchup</option>
+      <option>Relish</option>
+      <option>Reliskkkh</option>
+      <option>Mustard</option>
+      <option>Ketchup</option>
+      <option>Relish</option>
+      <option>Mustard</option>
+      <option>Ketchup</option>
+      <option>Relish</option>
+      <option>Reliskkkh</option>
+      <option>Mustard</option>
+      <option>Ketchup</option>
+      <option>Relish</option>
+  </select>
+
+
+</body>
+
+</html>
